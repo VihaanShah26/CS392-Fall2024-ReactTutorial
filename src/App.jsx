@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
+import Page from './components/TermPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -18,8 +19,7 @@ const Main = () => {
 
   return (
     <div className="App">
-      <Banner title={schedule.title} />
-      <CourseList courses={schedule.courses} />
+      <Page schedule={schedule} /> 
     </div>
   );
 }
@@ -29,10 +29,10 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-    <div className="container">
-      <Main />
-    </div>
-  </QueryClientProvider>
+      <div className="container">
+        <Main />
+      </div>
+    </QueryClientProvider>
   )
 };
 
