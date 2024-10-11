@@ -2,7 +2,7 @@ import CourseList from "./CourseList";
 import Banner from "./Banner";
 import { useState } from 'react';
 import './TermPage.css';
-
+import Modal from "./Modal";
 const terms = ["Fall", "Winter", "Spring"];
 
 const TermButton = ({ term, selection, setSelection }) => (
@@ -17,9 +17,9 @@ const TermButton = ({ term, selection, setSelection }) => (
 
 const TermSelector = ({ selection, setSelection }) => {
     return (
-        <div className="btn-group">
+        <div className="btn-group" key={selection}>
             {terms.map((term) => (
-                <TermButton term={term} selection={selection} setSelection={setSelection} />
+                <TermButton key={term} term={term} selection={selection} setSelection={setSelection} />
             ))}
         </div>
     );
@@ -28,6 +28,10 @@ const TermSelector = ({ selection, setSelection }) => {
 const Page = ({ schedule }) => {
     const [selectedTerm, setSelectedTerm] = useState("Fall");
     const [selected, setSelected] = useState([]);
+    const [open, setOpen] = useState(false);
+
+    const openModal = () => setOpen(true);
+    const closeModal = () => setOpen(false);
 
     const toggleSelected = (item) => setSelected(
         selected.includes(item)
@@ -39,6 +43,8 @@ const Page = ({ schedule }) => {
         <div className="App">
             <Banner title={schedule.title} />
             <TermSelector selection={selectedTerm} setSelection={setSelectedTerm} />
+            <button className="btn btn-primary m-2" onClick={openModal}>Course Plan</button>
+            <Modal courses={schedule.courses} selected={selected} close={closeModal} open={open} />
             <CourseList courses={schedule.courses} term={selectedTerm} selected={selected} toggleSelected={toggleSelected}/>
         </div>
     );
