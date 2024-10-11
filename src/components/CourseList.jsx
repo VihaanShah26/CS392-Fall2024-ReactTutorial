@@ -1,7 +1,6 @@
 import './courseList.css';
 
 const CourseList = ({ courses , term, selected, toggleSelected}) => {
-  console.log(selected);
   return (
     <div className="course-list">
       {
