@@ -50,4 +50,4 @@ const Page = ({ schedule }) => {
     );
 };
 
-export default Page;
+export default Page; 

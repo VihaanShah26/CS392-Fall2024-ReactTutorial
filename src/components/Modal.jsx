@@ -39,4 +39,4 @@ const Modal = ({ courses, selected, close, open }) => {
     </div>
   );
 };
-export default Modal;
+export default Modal; 
