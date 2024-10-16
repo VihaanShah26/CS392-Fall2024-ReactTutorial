@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useJsonQuery from './utilities/fetch';
+import Form from './components/EditForm';
+import { BrowserRouter, Routes, Route, useParams, useNavigate } from 'react-router-dom';
 
 const Main = () => {
   const [data, isLoading, error] = useJsonQuery('https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php');
@@ -18,10 +20,26 @@ const Main = () => {
   const schedule = data;
 
   return (
-    <div className="App">
-      <Page schedule={schedule} /> 
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Page schedule={schedule} />} />
+      <Route path="/edit/:id" element={<FormHelper schedule={schedule} />} />
+    </Routes>
+    </BrowserRouter>
   );
+}
+
+const FormHelper = (schedule) => {
+  const {id} = useParams();
+  console.log(schedule.schedule.courses);
+  const course = schedule.schedule.courses[id];
+
+  if (!course) {
+    useNavigate('/');
+    return;
+  }
+  
+  return <Form course={course} />;
 }
 
 const queryClient = new QueryClient();

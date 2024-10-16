@@ -1,8 +1,9 @@
 import './courseList.css';
 import CheckConflict from '../utilities/TimeConflict';
+import { Link } from 'react-router-dom';
 
 const CourseList = ({ courses, term, selected, toggleSelected }) => {
-  console.log(courses);
+  // console.log(courses);
   return (
     <div className="course-list">
       {Object.entries(courses)
@@ -13,15 +14,19 @@ const CourseList = ({ courses, term, selected, toggleSelected }) => {
             <div
               key={key}
               className={`card m1 p2 ${selected.includes(key) ? 'selected' : ''} ${conflict ? 'conflict' : ''}`}
-              onClick={() => selected.includes(key) ? toggleSelected(key) : !conflict && toggleSelected(key)} 
-              style={{ opacity: selected.includes(key) ? 1 : conflict ? 0.3 : 1 , cursor: selected.includes(key) ? 'pointer' : conflict ? 'not-allowed' : 'pointer' }} 
+              onClick={() => selected.includes(key) ? toggleSelected(key) : !conflict && toggleSelected(key)}
+              style={{ opacity: selected.includes(key) ? 1 : conflict ? 0.3 : 1, cursor: selected.includes(key) ? 'pointer' : conflict ? 'not-allowed' : 'pointer' }}
             >
               <div className="card-body">
                 <h5 className="card-title">{course.term} CS {course.number}</h5>
                 <p>{course.title}</p>
               </div>
               <div className="card-footer bg-transparent">
-                <p className="card-text">{course.meets}</p>
+                <p className="card-text">{course.meets}
+                  <Link to={`/edit/${key}`} onClick={(event) => event.stopPropagation()}>
+                    <i className="bi bi-pencil-square h4"></i>
+                  </Link>
+                </p>
               </div>
             </div>
           );
