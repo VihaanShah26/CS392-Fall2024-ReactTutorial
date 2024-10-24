@@ -40,7 +40,7 @@ const FormHelper = (schedule) => {
     return;
   }
   
-  return <Form course={course} />;
+  return <Form course={course} courseId={id} />;
 }
 
 const queryClient = new QueryClient();

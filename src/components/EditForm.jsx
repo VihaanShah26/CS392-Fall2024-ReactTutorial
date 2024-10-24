@@ -1,12 +1,14 @@
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDbUpdate } from '../utilities/firebase'; 
 
-const Form = ({course}) => {
+const Form = ({ course , courseId }) => {
     const navigate = useNavigate();
     
     const [title, setTitle] = useState(course.title);
     const [meets, setMeets] = useState(course.meets);
     const [errors, setErrors] = useState({ title: '', meets: '' });
+    const [updateData, result] = useDbUpdate(`/courses/${courseId}`); 
 
     const validateForm = () => {
         let isValid = true;
@@ -31,6 +33,7 @@ const Form = ({course}) => {
         e.preventDefault(); 
 
         if (validateForm()) {
+            updateData({ title, meets }); 
             navigate('/'); 
         }
     };
