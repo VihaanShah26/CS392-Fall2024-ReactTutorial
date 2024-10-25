@@ -1,9 +1,22 @@
 import './courseList.css';
 import CheckConflict from '../utilities/TimeConflict';
 import { Link } from 'react-router-dom';
+import {auth} from '../utilities/firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from 'react';
 
 const CourseList = ({ courses, term, selected, toggleSelected }) => {
   // console.log(courses);
+  const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser); 
+        });
+
+        return () => unsubscribe(); 
+    }, []);
+
   return (
     <div className="course-list">
       {Object.entries(courses)
@@ -23,9 +36,9 @@ const CourseList = ({ courses, term, selected, toggleSelected }) => {
               </div>
               <div className="card-footer bg-transparent">
                 <p className="card-text">{course.meets}
-                  <Link to={`/edit/${key}`} onClick={(event) => event.stopPropagation()}>
+                  {user && <Link to={`/edit/${key}`} onClick={(event) => event.stopPropagation()}>
                     <i className="bi bi-pencil-square h4"></i>
-                  </Link>
+                  </Link>}
                 </p>
               </div>
             </div>

@@ -18,17 +18,10 @@ const activation = ({isActive}) => isActive ? 'active' : 'inactive';
 
 const Navigation = () => (
   <nav className="d-flex">
+    <NavLink to="/" className={activation} end>Posts</NavLink>
+    <NavLink to="/users" className={activation} end>Users</NavLink>
     <AuthButton />
   </nav>
 );
 
-export const Banner = ({title}) => { 
-    return (
-        <div className="banner d-flex justify-content-between align-items-center">
-            <h1>{title}</h1>
-            <AuthButton />
-        </div>
-    );
-}
-
-export default Banner;
+export default Navigation;

@@ -1,3 +1,46 @@
+/* TermPage.css */
+
+.App {
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px; */
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .term-button {
-    padding: 5px;
+    padding: 7px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.course-btn {
+    align-items: right;
+    text-align: right;
+    justify-content: right;
+    margin-left: auto;
+}
+
+/* TermPage.css */
+
+.term-selector-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.course-plan-btn {
+    margin-left: auto; /* Ensures the button is pushed to the right */
 }
