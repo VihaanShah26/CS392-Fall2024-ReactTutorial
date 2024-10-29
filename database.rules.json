@@ -1,19 +1,16 @@
 {
   "rules": {
     ".read": true,
-    ".write": true
-  }
-  ,
-  "admin": {
-    ".read": "auth != null && auth.uid == 'adminUserId'",
-    ".write": "auth != null && auth.uid == 'adminUserId'"
-  }
-  ,
+    ".write": true,
+    "admin": {
+      ".read": "auth != null && auth.uid == 'adminUserId'",
+      ".write": "auth != null && auth.uid == 'adminUserId'"
+    },
     "users": {
       "$uid": {
         ".read": "auth != null && auth.uid == $uid",
         ".write": "auth != null && auth.uid == $uid"
       }
     }
+  }
 }
-
