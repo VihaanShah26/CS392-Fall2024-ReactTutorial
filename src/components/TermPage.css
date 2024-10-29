@@ -1,9 +1,6 @@
-/* TermPage.css */
-
 .App {
     display: flex;
     flex-direction: column;
-    /* padding: 20px; */
 }
 
 .header {
@@ -31,8 +28,6 @@
     margin-left: auto;
 }
 
-/* TermPage.css */
-
 .term-selector-container {
     display: flex;
     justify-content: space-between;
@@ -40,7 +35,6 @@
     width: 100%;
 }
 
-
 .course-plan-btn {
-    margin-left: auto; /* Ensures the button is pushed to the right */
+    margin-left: auto; 
 }

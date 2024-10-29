@@ -18,13 +18,13 @@ const CourseList = ({ courses, term, selected, toggleSelected }) => {
     return () => unsubscribe();
   }, []);
 
-  const [profile, profileLoading, profileError] = useProfile();
+  const [{uid, isAdmin}, profileLoading, profileError] = useProfile();
 
-  if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
-  if (profileLoading) return <h1>Loading user profile</h1>;
-  if (!profile) return <h1>No profile data</h1>;
+  // if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
+  // if (profileLoading) return <h1>Loading user profile</h1>;
+  // if (!profile) return <h1>No profile data</h1>;
 
-  const isAdmin = profile.isAdmin;
+  // const isAdmin = profile.isAdmin;
 
   return (
     <div className="course-list">
